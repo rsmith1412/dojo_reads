@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{book.title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <a href="/books">Home</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <main>
+        <h3>{{book.title}}</h2>
+        <p>Author: {{book.author}}</p>
+        <div class="row">
+            <div class="col-6 reviews">
+                <h2>Reviews:</h2>
+                {% for review in book.reviews.all %}
+                    <div class="book_reviews">
+                        <p>Rating: {{review.rating}}</p>
+                        <p><a href="/users/{{review.reviewer.id}}">{{review.reviewer.alias}}</a> says: <span style="font-style:italic">{{review.content}}</span></p>
+                        <div class="conditional_div">
+                            <p style="font-style:italic">Posted on: {{review.created_at}}</p>
+                            {% if review.reviewer.id == user.id %}
+                            <a href="/books/{{review.id}}/delete_review">Delete This Review</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            
+            <div class="col-5 add_review">
+                <h2>Add a review:</h2>
+                <form action="/books/{{book.id}}/create_review" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        Review: <textarea name="content" class="form-control" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        Rating: 
+                        <select name="rating" class="form-control" id="rating">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit Review">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

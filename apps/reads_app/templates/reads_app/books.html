@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h2>Welcome, {{user.alias}}!</h2>
+        <a href="/books/add">Add Book and Review</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <div class="row">
+        <div class="col-6 recent_reviews">
+            <h2>Recent Book Reviews:</h2>
+            {% for review in reviews %}
+            <div class="review">
+                <h4><a href="/books/{{review.book_reviewed.id}}">{{review.book_reviewed.title}}</a></h4>
+                <p>Rating: {{review.rating}}</p>
+                <p style="font-style: italic;"><a href="users/{{review.reviewer.id}}">{{review.reviewer.alias}}</a> says: {{review.content}}</p>
+                <p style="font-style: italic;"> Posted on {{review.created_at}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-6 other_books_reviews">
+            <h2>Other Books with Reviews:</h2>
+            <div class="other_books">
+                {% for book in books %}
+                <div class="book">
+                    <a href="/books/{{book.id}}">{{book.title}}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

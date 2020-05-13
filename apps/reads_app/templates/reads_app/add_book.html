@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <a href="/books">Home</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <h2>Add a New Book Title and a Review:</h2>
+    <form action="/books/add_book" class="add_book" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            Title: <input type="text" class="form-control" name="title">
+        </div>
+        <div class="form-group">
+            Author: <input type="text" class="form-control" name="author">
+        </div>
+        <div class="form-group">
+            Review: <textarea name="content" class="form-control" cols="30" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            Rating: 
+            <select name="rating" class="form-control" id="rating">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Add Book and Review">
+    </form>
+</body>
+</html>

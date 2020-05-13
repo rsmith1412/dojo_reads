@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    margin-top: 40px;
+}
+.form1, .form2 {
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+h2 {
+    text-align: center;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    background-color: navy;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+header a {
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+}
+.other_books {
+    height: 400px;
+}
+.add_book {
+    width: 50%;
+    margin: 0 auto;
+}
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.book_reviews {
+    border-top: 1px solid lightgray;
+    padding: 5px;
+}
+.conditional_div {
+    display: flex;
+    justify-content: space-between;
+}
+.review {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+.review p {
+    margin-left: 20px;
+}
+.shift {
+    margin-left: 20px;
+}
