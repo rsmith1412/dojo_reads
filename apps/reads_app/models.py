@@ -64,8 +64,8 @@ class Book(models.Model):
 class Review(models.Model):
     content = models.CharField(max_length=255)
     rating = models.IntegerField()
-    reviewer = models.ForeignKey(User, related_name="user_reviews")
-    book_reviewed = models.ForeignKey(Book, related_name="reviews")
+    reviewer = models.ForeignKey(User, related_name="user_reviews", on_delete=models.CASCADE)
+    book_reviewed = models.ForeignKey(Book, related_name="reviews", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ReviewManager()

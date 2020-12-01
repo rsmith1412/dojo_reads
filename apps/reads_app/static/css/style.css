@@ -5,6 +5,9 @@
 .container {
     margin-top: 40px;
 }
+.register, .login {
+    padding: 40px;
+}
 .form1, .form2 {
     padding: 20px;
     border: 1px solid lightgray;
